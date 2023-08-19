@@ -12,22 +12,23 @@ import Results from './components/results';
 import { useState } from 'react';
 
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [requestParams, setRequestParams] = useState({});
-
+  const [dataArray, setDataArray] = useState([]); // Change here
   const callApi = (reqParams) => {
-    // Mock output
-    const newData = {
-      count: 2,
-      results: [
-        { name: 'fake thing 1', url: 'http://fakethings.com/1' },
-        { name: 'fake thing 2', url: 'http://fakethings.com/2' },
-      ],
-    };
-    setData(newData);
     setRequestParams(reqParams);
-    console.log(data)
+    
+    const newDataArray = [...dataArray, reqParams];
+    setDataArray(newDataArray);
+    
+    const newData = {
+      count: newDataArray.length,
+      results: newDataArray 
+    };
+    
+    setData(newData);
   }
+
 
   return (
     <React.Fragment>
@@ -35,7 +36,7 @@ function App() {
       <div data-testid="req-method">Request Method: {requestParams.method}</div>
       <div data-testid="url">URL: {requestParams.url}</div>
       <Form handleApiCall={callApi} />
-      <Results data={requestParams.data} />
+      <Results data={data} />
       <Footer />
     </React.Fragment>
   );
