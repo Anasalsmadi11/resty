@@ -37,7 +37,7 @@ function App() {
       <div data-testid="url">URL: {requestParams.url}</div>
       <Form handleApiCall={callApi} />
       <Results data={data} />
-      <Footer />
+      <Footer /> 
     </React.Fragment>
   );
 }
