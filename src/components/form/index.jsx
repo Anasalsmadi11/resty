@@ -5,13 +5,28 @@ function Form(props){
   const[input, setInput]=useState("")
   const[method, setMethod]= useState("get")
   const [textarea, setTextarea]=useState(false)
-  const[textareaData, setTextareaData]= useState({})
+  const[data, setData]= useState({})
 
 
+  // let handleData=(e)=>{
+  //   setTextareaData(e.target.value)
+  //   console.log("data",textareaData)
+  // }
   let handleData=(e)=>{
-    setTextareaData(e.target.value)
-    console.log("data",textareaData)
+    e.preventDefault()
+    let obj= {
+      name:e.target.value,
+      url: e.target.value
+    }
+    setData(obj)
   }
+  let handleurlData=(e)=>{
+    e.preventDefault()
+    data.url= e.target.value
+  }
+
+
+
   let handleChange=(e)=>{
     setInput(e.target.value)
    
@@ -25,12 +40,14 @@ function Form(props){
       setTextarea(false)
     }
   }
+
+ 
     let handleSubmit = e => {
     e.preventDefault();
     const formData = {
       method:method,
       url: input,
-      data:textareaData
+      data:data
     };
     props.handleApiCall(formData);
   }
@@ -63,10 +80,23 @@ function Form(props){
             <button onClick={handleMethodChange} id="put">PUT</button>
             <button onClick={handleMethodChange} id="delete">DELETE</button>
           </label>
-        </form>
         {textarea && 
-        <textarea onChange={handleData} id="textarea" cols="5" rows="5"></textarea>
+        <form > 
+
+          <label >
+            <span>Name </span>
+            <input onChange={handleData} id='namee' type='text' />
+          </label>
+          <label >
+            <span>Url </span>
+            <input onChange={handleurlData} id='urll' type='text' />
+          </label>
+          <button type="submit" onClick={handleSubmit}>submit</button>
+        </form>
+        
+
       }
+        </form>
     </>
   )
 }
