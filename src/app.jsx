@@ -10,11 +10,12 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 import { useState } from 'react';
-
+// import axios from 'axios';
 function App() {
   const [data, setData] = useState({});
   const [requestParams, setRequestParams] = useState({});
   const [dataArray, setDataArray] = useState([]); // Change here
+  
   const callApi = (reqParams) => {
     setRequestParams(reqParams);
     
