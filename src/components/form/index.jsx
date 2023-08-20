@@ -71,7 +71,7 @@ function Form(props){
         <form >
           <label >
             <span>URL: </span>
-            <input onChange={handleChange} name='url' type='text' />
+            <input onChange={handleChange} name='url' type='text' placeholder='enter your api here!' />
             <button type="submit" onClick={handleSubmit}>GO!</button>
           </label>
           <label className="methods">

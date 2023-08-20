@@ -10,24 +10,45 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 import { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 function App() {
   const [data, setData] = useState({});
   const [requestParams, setRequestParams] = useState({});
   const [dataArray, setDataArray] = useState([]); // Change here
-  
-  const callApi = (reqParams) => {
+  // const url= requestParams.url
+
+
+  //  const fetchData=  axios.get(  requestParams.url)
+  // .then(response => {
+
+  //   console.log(response.data);
+  //   return response.data
+  // })
+  // .catch(error => {
+   
+  //   console.error('Error fetching data:', error);
+  // });
+
+// console.log("fetch",fetchData)
+ 
+
+
+
+
+  const callApi = async(reqParams) => {
     setRequestParams(reqParams);
     
     const newDataArray = [...dataArray, reqParams];
     setDataArray(newDataArray);
-    
+    // const fetchedData= await fetchData
+    const response = await axios.get(reqParams.url);
     const newData = {
       count: newDataArray.length,
-      results: newDataArray 
+      results: response.data 
     };
     
     setData(newData);
+
   }
 
 
