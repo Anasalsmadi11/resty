@@ -16,13 +16,13 @@ function Form(props){
     e.preventDefault()
     let obj= {
       name:e.target.value,
-      url: e.target.value
+      preview: e.target.value
     }
     setData(obj)
   }
   let handleurlData=(e)=>{
     e.preventDefault()
-    data.url= e.target.value
+    data.preview= e.target.value
   }
 
 
@@ -88,7 +88,7 @@ function Form(props){
             <input onChange={handleData} id='namee' type='text' />
           </label>
           <label >
-            <span>Url </span>
+            <span>Preview </span>
             <input onChange={handleurlData} id='urll' type='text' />
           </label>
           <button type="submit" onClick={handleSubmit}>submit</button>
