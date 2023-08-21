@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './app.scss';
 
@@ -31,23 +31,26 @@ function App() {
 
 // console.log("fetch",fetchData)
  
-
-
-
+useEffect(()=>{
+  if(requestParams.url){
+    const fetchData= async()=>{
+      const response= await axios.get(requestParams.url)
+      const newData = {
+        count: dataArray.length,
+        results: response.data 
+      };
+      console.log("resopnse",response)
+      setData(newData)
+    }
+    fetchData()
+  }
+},[requestParams.url, dataArray])
 
   const callApi = async(reqParams) => {
     setRequestParams(reqParams);
-    
     const newDataArray = [...dataArray, reqParams];
     setDataArray(newDataArray);
-    // const fetchedData= await fetchData
-    const response = await axios.get(reqParams.url);
-    const newData = {
-      count: newDataArray.length,
-      results: response.data 
-    };
-    
-    setData(newData);
+
 
   }
 
